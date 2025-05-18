@@ -3,6 +3,7 @@ local PitBull4 = _G.PitBull4
 local L = PitBull4.L
 
 local wow_cata = PitBull4.wow_cata
+local wow_mists = PitBull4.wow_mists
 local GetSpellName = C_Spell.GetSpellName or _G.GetSpellInfo -- XXX Classic
 local IsSpellInRange = C_Spell.IsSpellInRange or _G.IsSpellInRange -- XXX Classic
 
@@ -266,7 +267,7 @@ end
 PitBull4_RangeFader:SetLayoutOptionsFunction(function(self)
 	local get_spell_range
 	local range_pattern = _G.SPELL_RANGE:gsub("%%s", ".-")
-	if not wow_cata then
+	if not wow_cata and not wow_mists then
 		function get_spell_range(spell_id)
 			local data = C_TooltipInfo.GetSpellByID(spell_id, true)
 			if not data then return end

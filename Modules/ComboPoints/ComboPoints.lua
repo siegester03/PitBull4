@@ -59,7 +59,7 @@ function PitBull4_ComboPoints:UNIT_POWER_FREQUENT(_, unit, power_type)
 	if unit ~= "player" and unit ~= "pet" then return end
 	if power_type ~= "COMBO_POINTS" then return end
 
-	if not wow_cata then
+	if not wow_cat and not wow_mists then
 		for frame in PitBull4:IterateFramesForUnitIDs("player", "pet", "target") do
 			self:Update(frame)
 		end

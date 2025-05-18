@@ -3,6 +3,7 @@ local PitBull4 = _G.PitBull4
 local L = PitBull4.L
 
 local wow_cata = PitBull4.wow_cata
+local wow_mists = PitBull4.wow_mists
 
 -----------------------------------------------------------------------------
 -- luacheck: no global
@@ -129,7 +130,7 @@ function hiders:player()
 end
 
 function hiders:runebar()
-	if not wow_cata then
+	if not wow_cata and not wow_mists then
 		simple_hook_frames(RuneFrame, WarlockPowerFrame, MonkHarmonyBarFrame, PaladinPowerBarFrame, MageArcaneChargesFrame, EssencePlayerFrame)
 	end
 end

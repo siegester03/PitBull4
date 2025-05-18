@@ -3,6 +3,7 @@ local PitBull4 = _G.PitBull4
 local L = PitBull4.L
 
 local wow_cata = PitBull4.wow_cata
+local wow_mists = PitBull4.wow_mists
 
 local PitBull4_PhaseIcon = PitBull4:NewModule("PhaseIcon")
 
@@ -31,7 +32,7 @@ end
 
 function PitBull4_PhaseIcon:OnEnter()
 	local tooltip = _G.PARTY_PHASED_MESSAGE
-	if not wow_cata then
+	if not wow_cata and not wow_mists then
 		local unit = self:GetParent().unit
 		local phaseReason = UnitPhaseReason(unit)
 		local tooltip = PartyUtil.GetPhasedReasonString(phaseReason, unit) or _G.PARTY_PHASED_MESSAGE
@@ -52,7 +53,7 @@ function PitBull4_PhaseIcon:GetTexture(frame)
 		return nil
 	end
 
-	if wow_cata then
+	if wow_cata or wow_mists then
 		if UnitInPhase(unit) then
 			return nil
 		end

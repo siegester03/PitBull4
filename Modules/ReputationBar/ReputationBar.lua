@@ -3,6 +3,7 @@ local PitBull4 = _G.PitBull4
 local L = PitBull4.L
 
 local wow_cata = PitBull4.wow_cata
+local wow_mists = PitBull4.wow_mists
 
 local EXAMPLE_VALUE = 0.3
 local FRIENDSHIP_REACTION_MAP = {
@@ -53,7 +54,7 @@ function PitBull4_ReputationBar:GetValue(frame)
 		return nil
 	end
 
-	if not wow_cata then
+	if not wow_cata and not wow_mists then
 		local rep_info = C_GossipInfo.GetFriendshipReputation(faction_id)
 		local friendship_id = rep_info.friendshipFactionID
 
@@ -106,7 +107,7 @@ function PitBull4_ReputationBar:GetColor(frame, value)
 		end
 	end
 
-	if not wow_cata then
+	if not wow_cata and not wow_mists then
 		local rep_info = faction_id and C_GossipInfo.GetFriendshipReputation(faction_id)
 		if C_Reputation.IsFactionParagon(faction_id) then
 			reaction = "paragon"
@@ -145,7 +146,7 @@ local function Update()
 		end
 	end
 end
-if not wow_cata then
+if not wow_cata and not wow_mists then
 	hooksecurefunc(StatusTrackingBarManager, "UpdateBarsShown", Update)
 else
 	hooksecurefunc("MainMenuBar_UpdateExperienceBars", Update)

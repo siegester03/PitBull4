@@ -7,6 +7,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("PitBull4")
 
 
 local wow_cata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC or nil
+local wow_mists = WOW_PROJECT_ID == (WOW_PROJECT_MISTS_CLASSIC or 19) or nil
 
 local SINGLETON_CLASSIFICATIONS = {
 	"player",
@@ -320,7 +321,7 @@ local DEFAULT_UNITS =  {
 
 local LOCALIZED_NAMES = {}
 do
-	local num_classes = wow_cata and 11 or GetNumClasses()
+	local num_classes = (wow_cata and 11) or (wow_mists and 12) or GetNumClasses()
 	for i = 1, num_classes do
 		local info = C_CreatureInfo.GetClassInfo(i)
 		if info then
@@ -358,6 +359,7 @@ if PitBull4.version:match("@") then
 end
 
 PitBull4.wow_cata = wow_cata
+PitBull4.wow_mists = wow_mists
 
 PitBull4.L = L
 

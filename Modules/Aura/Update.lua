@@ -163,7 +163,7 @@ end
 -- Get the name of the temporary enchant on a weapon from the tooltip
 -- given the item slot the weapon is in.
 local get_weapon_enchant_name
-if not wow_cata then
+if not wow_cata and not wow_mists then
 	function get_weapon_enchant_name(slot)
 		local data = C_TooltipInfo.GetInventoryItem("player", slot, true)
 		if not data then return end

@@ -5,6 +5,7 @@ local L = PitBull4.L
 local PitBull4_LuaTexts = PitBull4:GetModule("LuaTexts")
 
 local wow_cata = PitBull4.wow_cata
+local wow_mists = PitBull4.wow_mists
 local GetSpellName = C_Spell.GetSpellName or _G.GetSpellInfo -- XXX Classic
 
 -- luacheck: globals Enum AzeriteUtil
@@ -412,7 +413,7 @@ end
 ScriptEnv.ClassColor = ClassColor
 
 local function Level(unit)
-	if not wow_cata then
+	if not wow_cata and not wow_mists then
 		if UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit) then
 			return UnitBattlePetLevel(unit)
 		end
@@ -521,7 +522,7 @@ end
 ScriptEnv.ShortClass = ShortClass
 
 local function Creature(unit)
-	if not wow_cata then
+	if not wow_cata and not wow_mists then
 		if UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit) then
 			return _G["BATTLE_PET_NAME_"..UnitBattlePetType(unit)].." "..TOOLTIP_BATTLE_PET
 		end
@@ -1004,7 +1005,7 @@ ScriptEnv.RestXP = RestXP
 
 -- Pre-Dragonflight API wrapper for old texts
 local function GetFriendshipReputation(id)
-	if not wow_cata then
+	if not wow_cata and not wow_mists then
 		local info = C_GossipInfo.GetFriendshipReputation(id)
 		if info.friendshipFactionID > 0 then
 			return info.friendshipFactionID, info.standing, info.maxRep, info.name, info.text, info.texture, info.reaction, info.reactionThreshold, info.nextThreshold
@@ -1032,7 +1033,7 @@ local function WatchedFactionInfo()
 		return nil
 	end
 
-	if not wow_cata then
+	if not wow_cata and not wow_mists then
 		local rep_info = C_GossipInfo.GetFriendshipReputation(faction_id)
 		local friendship_id = rep_info.friendshipFactionID
 
